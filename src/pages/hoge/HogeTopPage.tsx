@@ -1,5 +1,5 @@
 import { Layout } from "antd";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -8,33 +8,29 @@ import {
 import DetailPage from "./DetailPage";
 import ListPage from "./ListPage";
 
-interface IHogeContext {
-  list: { title: string; msg: string }[];
+export type THogeValue = {
+  title: string;
+  msg: string;
+};
+
+export interface IHogeData {
+  list: THogeValue[];
+}
+
+export interface IHogeContext extends IHogeData {
+  dispatch: React.Dispatch<any>;
 }
 
 export const HogeContext = createContext({} as IHogeContext);
 
 const HogeTopPage = () => {
   const match = useRouteMatch();
-  const [hogeValue, setHogeValue] = useState({
-    list: [
-      {
-        title: "title1",
-        msg: "msg1",
-      },
-      {
-        title: "title2",
-        msg: "msg2",
-      },
-      {
-        title: "title3",
-        msg: "msg4",
-      },
-    ],
-  } as IHogeContext);
+  const [hogeValue, setHogeValue] = useState<IHogeData>();
 
   return (
-    <HogeContext.Provider value={hogeValue}>
+    <HogeContext.Provider
+      value={{ list: hogeValue?.list, dispatch: setHogeValue } as IHogeContext}
+    >
       <Router>
         <Layout style={{ padding: 10, backgroundColor: "#ccffff" }}>
           <Route exact path={match.path} component={ListPage}></Route>
