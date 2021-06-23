@@ -1,5 +1,5 @@
 import { Layout } from "antd";
-import { createContext } from "react";
+import { createContext, useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -16,8 +16,7 @@ export const HogeContext = createContext({} as IHogeContext);
 
 const HogeTopPage = () => {
   const match = useRouteMatch();
-
-  const hogeValue = {
+  const [hogeValue, setHogeValue] = useState({
     list: [
       {
         title: "title1",
@@ -32,7 +31,7 @@ const HogeTopPage = () => {
         msg: "msg4",
       },
     ],
-  } as IHogeContext;
+  } as IHogeContext);
 
   return (
     <HogeContext.Provider value={hogeValue}>
