@@ -8,11 +8,11 @@ const TopPage = () => {
   return (
     <Router>
       <Layout style={{ padding: _padding, backgroundColor: "#ccccff" }}>
-        <Link to="/">Hoge(TOP)</Link>
+        <Link to="/hoge">Hoge(TOP)</Link>
         <Link to="/fuga">Fuga</Link>
       </Layout>
       <Layout style={{ padding: _padding, backgroundColor: "#ccffcc" }}>
-        <Route exact path="/" component={HogeTopPage}></Route>
+        <Route exact path="/hoge" component={HogeTopPage}></Route>
         <Route path="/fuga" component={FugaTopPage}></Route>
       </Layout>
     </Router>
