@@ -6,22 +6,9 @@ import {
   useRouteMatch,
 } from "react-router-dom";
 import DetailPage from "./DetailPage";
+import { HogeContext, IHogeContext } from "./model/IHogeContext";
+import { IHogeData } from "./model/IHogeData";
 import ListPage from "./ListPage";
-
-export type THogeValue = {
-  title: string;
-  msg: string;
-};
-
-export interface IHogeData {
-  list: THogeValue[];
-}
-
-export interface IHogeContext extends IHogeData {
-  dispatch: React.Dispatch<any>;
-}
-
-export const HogeContext = createContext({} as IHogeContext);
 
 const HogeTopPage = () => {
   const match = useRouteMatch();

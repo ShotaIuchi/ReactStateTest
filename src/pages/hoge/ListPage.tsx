@@ -1,7 +1,7 @@
 import { Layout } from "antd";
 import { useContext } from "react";
 import { Link, useRouteMatch } from "react-router-dom";
-import { HogeContext } from "./HogeTopPage";
+import { HogeContext } from "./model/IHogeContext";
 
 const ListPage = () => {
   const match = useRouteMatch();
