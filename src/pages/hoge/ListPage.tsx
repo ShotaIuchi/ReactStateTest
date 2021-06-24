@@ -41,7 +41,11 @@ const ListPage = () => {
       </button>
 
       {hogeValue?.list?.map((value, index) => {
-        return <Link to={`${match.url}/${index}`}>{value.title}</Link>;
+        return (
+          <Link key={index} to={`${match.url}/${index}`}>
+            {value.title}
+          </Link>
+        );
       })}
     </Layout>
   );
