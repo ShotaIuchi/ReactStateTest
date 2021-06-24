@@ -1,5 +1,5 @@
 import { Layout } from "antd";
-import { createContext, useState } from "react";
+import { createContext, useReducer, useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -9,14 +9,47 @@ import DetailPage from "./DetailPage";
 import { HogeContext, IHogeContext } from "./model/IHogeContext";
 import { IHogeData } from "./model/IHogeData";
 import ListPage from "./ListPage";
+import { THogeValue } from "./model/THogeValue";
+
+export interface IHogeValueAction {
+  type: string;
+  list: THogeValue[];
+}
+
+export const HogeReducerFunc: React.Reducer<any, any> = (
+  state: IHogeContext,
+  action: IHogeValueAction
+) => {
+  switch (action.type) {
+    case "UPDATE":
+      return { ...state, list: action.list };
+    case "ADD":
+      var list = [] as THogeValue[];
+      if (state?.list) {
+        list = state.list.concat(list);
+      }
+      if (action?.list) {
+        list = action.list.concat(list);
+      }
+      return {
+        ...state,
+        list,
+      };
+    default:
+      return state;
+  }
+};
 
 const HogeTopPage = () => {
   const match = useRouteMatch();
-  const [hogeValue, setHogeValue] = useState<IHogeData>();
+  const [hogeValue, hogeDispatch] = useReducer(
+    HogeReducerFunc,
+    {} as IHogeData
+  );
 
   return (
     <HogeContext.Provider
-      value={{ list: hogeValue?.list, dispatch: setHogeValue } as IHogeContext}
+      value={{ list: hogeValue?.list, dispatch: hogeDispatch } as IHogeContext}
     >
       <Router>
         <Layout style={{ padding: 10, backgroundColor: "#ccffff" }}>

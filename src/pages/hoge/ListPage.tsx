@@ -12,6 +12,7 @@ const ListPage = () => {
       <button
         onClick={() => {
           hogeValue.dispatch({
+            type: "UPDATE",
             list: [
               {
                 title: `${Date().toString()}`,
@@ -22,6 +23,21 @@ const ListPage = () => {
         }}
       >
         UPDATE
+      </button>
+      <button
+        onClick={() => {
+          hogeValue.dispatch({
+            type: "ADD",
+            list: [
+              {
+                title: `${Date().toString()}`,
+                msg: `${Date().toLowerCase()}`,
+              },
+            ],
+          });
+        }}
+      >
+        ADD
       </button>
 
       {hogeValue?.list?.map((value, index) => {
