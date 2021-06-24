@@ -4,6 +4,7 @@ import FugaTopPage from "./fuga/FugaTopPage";
 import HogeTopPage from "./hoge/HogeTopPage";
 
 const TopPage = () => {
+  console.log(TopPage.name);
   const _padding = 10;
   return (
     <Router>

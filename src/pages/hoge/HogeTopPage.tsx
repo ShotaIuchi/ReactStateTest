@@ -41,6 +41,8 @@ export const HogeReducerFunc: React.Reducer<any, any> = (
 };
 
 const HogeTopPage = () => {
+  console.log(HogeTopPage.name);
+
   const match = useRouteMatch();
   const [hogeValue, hogeDispatch] = useReducer(
     HogeReducerFunc,

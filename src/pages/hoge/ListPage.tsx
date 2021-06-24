@@ -4,6 +4,7 @@ import { Link, useRouteMatch } from "react-router-dom";
 import { HogeContext } from "./model/IHogeContext";
 
 const ListPage = () => {
+  console.log(ListPage.name);
   const match = useRouteMatch();
   const hogeValue = useContext(HogeContext);
 
